@@ -199,7 +199,6 @@ def plots():
         margin=dict(t=25, b=50, r=25, l=25)
     )
 
-    ############################################ Map Lisbon ########################################################
     lis_local_exact = listings_lisbon[listings_lisbon['is_location_exact'] == 1]
 
     data = go.Scattermapbox(
@@ -239,7 +238,6 @@ def plots():
         margin=dict(t=0,b=0,r=0,l=0)
     )
 
-    #Returns
     return go.Figure(data=line_data_lisbon, layout=line_layout), \
            go.Figure(data=data_bar_lisbon, layout=layout_bar), \
            fig_bar, \
@@ -264,7 +262,6 @@ def plotsparis():
                        paper_bgcolor='lightcoral', plot_bgcolor='lightcoral',
                        colorway=['rgb(255,255,255)'])
 
-    ############################################ Bar Chart Paris ##########################################################
 
     count_listings_paris = pd.DataFrame(listings_paris.groupby('neighbourhood').count())
     count_listings_paris = count_listings_paris.sort_values(by=['id'], ascending=False)
@@ -394,7 +391,6 @@ def plotsparis():
         margin=dict(t=25, b=50, r=25, l=25)
     )
 
-    ############################################ Map Paris ########################################################
     lis_local_exact = listings_paris[listings_paris['is_location_exact'] == 1]
 
     data = go.Scattermapbox(
@@ -434,7 +430,6 @@ def plotsparis():
         margin=dict(t=0,b=0,r=0,l=0)
     )
 
-    #Returns
     return go.Figure(data=line_data_paris, layout=line_layout), \
            go.Figure(data=data_bar_paris, layout=layout_bar), \
            fig_bar, \
@@ -443,7 +438,6 @@ def plotsparis():
 
 def plotams():
 
-    ############################################ Line Chart amsterdam ##########################################################
     avg_price_amsterdam = pd.DataFrame(calendar_amsterdam.groupby('month')['price'].agg(np.mean))
     avg_price_amsterdam['month'] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     avg_price_amsterdam['month_num'] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -459,7 +453,6 @@ def plotams():
                        paper_bgcolor='lightcoral', plot_bgcolor='lightcoral',
                        colorway=['rgb(255,255,255)'])
 
-    ############################################ Bar Chart amsterdam ##########################################################
 
     count_listings_amsterdam = pd.DataFrame(listings_amsterdam.groupby('neighbourhood').count())
     count_listings_amsterdam = count_listings_amsterdam.sort_values(by=['id'], ascending=False)
@@ -476,7 +469,6 @@ def plotams():
                       paper_bgcolor='lightcoral', plot_bgcolor='lightcoral', colorway=['rgb(255,255,255)'],
                       xaxis=dict(showgrid=False, color='rgb(255,255,255)'))
 
-    ############################################ Stacked Bar Chart amsterdam ########################################################
     rtype_amsterdam = pd.DataFrame(listings_amsterdam['room_type'].value_counts())
     rtype_amsterdam.columns = ['room_count']
     rtype_amsterdam['room_perc'] = round((rtype_amsterdam['room_count'] / sum(rtype_amsterdam['room_count'])) * 100, 1)
@@ -530,7 +522,6 @@ def plotams():
                           height=300,
                           plot_bgcolor='whitesmoke',margin=dict(t=100,b=0,r=0,l=0))
 
-    ############################################ Radar amsterdam ########################################################
     scores_amsterdam = round(listings_amsterdam.mean()[['score_clean', 'score_communication', 'score_location']], 1)
     scores_amsterdam = pd.DataFrame(scores_amsterdam)
     scores_amsterdam = scores_amsterdam.T
@@ -586,7 +577,6 @@ def plotams():
         margin=dict(t=25, b=50, r=25, l=25)
     )
 
-    ############################################ Map amsterdam ########################################################
     lis_local_exact = listings_amsterdam[listings_amsterdam['is_location_exact'] == 1]
 
     data = go.Scattermapbox(
@@ -626,7 +616,6 @@ def plotams():
         margin=dict(t=0,b=0,r=0,l=0)
     )
 
-    #Returns
     return go.Figure(data=line_data_amsterdam, layout=line_layout), \
            go.Figure(data=data_bar_amsterdam, layout=layout_bar), \
            fig_bar, \
@@ -656,13 +645,11 @@ app.layout = html.Div([
 
     ]),
     html.Div(id='tabs-content-example'),
-    #end tabs
 
 
 ])
 
 
-#callbacks tabs
 @app.callback(Output('tabs-content-example', 'children'),
               [Input('tabs-example', 'value')])
 def render_content(tab):
