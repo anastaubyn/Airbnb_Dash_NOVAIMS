@@ -721,12 +721,12 @@ def render_content(tab):
                         html.Div([
                             html.H6("Average Cheapest Neighborhood", style={"text-align": "center",
                                                                             "color": "lightcoral"}),
-                            html.H4(kpiCheapest("Paris"), style={"text-align": "center"})
+                            html.H4(cheapest("Paris"), style={"text-align": "center"})
                         ], className='six columns'),
                         html.Div([
                             html.H6("Average Most Expensive Neighborhood", style={"text-align": "center",
                                                                                   "color": "lightcoral"}),
-                            html.H4(kpiExpensive("Paris"), style={"text-align": "center"})
+                            html.H4(expensive("Paris"), style={"text-align": "center"})
                         ], className='six columns'),
                     ], className='row', style={"margin-bottom": "75px"}),
                     html.Div([
@@ -773,12 +773,12 @@ def render_content(tab):
                         html.Div([
                             html.H6("Average Cheapest Neighborhood", style={"text-align": "center",
                                                                             "color": "lightcoral"}),
-                            html.H4(kpiCheapest("Lisbon"), style={"text-align": "center"})
+                            html.H4(cheapest("Lisbon"), style={"text-align": "center"})
                         ], className='six columns'),
                         html.Div([
                             html.H6("Average Most Expensive Neighborhood", style={"text-align": "center",
                                                                                   "color": "lightcoral"}),
-                            html.H4(kpiExpensive("Lisbon"), style={"text-align": "center"})
+                            html.H4(expensive("Lisbon"), style={"text-align": "center"})
                         ], className='six columns'),
                     ], className='row', style={"margin-bottom": "75px"}),
                     html.Div([
@@ -825,12 +825,12 @@ def render_content(tab):
                         html.Div([
                             html.H6("Average Cheapest Neighborhood", style={"text-align": "center",
                                                                             "color": "lightcoral"}),
-                            html.H4(kpiCheapest("Amsterdam"), style={"text-align": "center"})
+                            html.H4(cheapest("Amsterdam"), style={"text-align": "center"})
                         ], className='six columns'),
                         html.Div([
                             html.H6("Average Most Expensive Neighborhood", style={"text-align": "center",
                                                                                   "color": "lightcoral"}),
-                            html.H4(kpiExpensive("Amsterdam"), style={"text-align": "center"})
+                            html.H4(expensive("Amsterdam"), style={"text-align": "center"})
                         ], className='six columns'),
                     ], className='row', style={"margin-bottom": "75px"}),
                     html.Div([
