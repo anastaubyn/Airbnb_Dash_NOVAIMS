@@ -31,6 +31,7 @@ def cheapest(city):
         kpi_amsterdam = kpi_amsterdam.sort_values(by=['price'], ascending=True)
         kpi_amsterdam.reset_index(inplace=True)
         cheap = kpi_amsterdam.iloc[0, ]['neighbourhood']
+    print(' ')
     return cheap
 
 
@@ -50,6 +51,7 @@ def expensive(city):
         kpi_amsterdam = kpi_amsterdam.sort_values(by=['price'], ascending=True)
         kpi_amsterdam.reset_index(inplace=True)
         expense = kpi_amsterdam.iloc[-1, ]['neighbourhood']
+    print(' ')
     return expense
 
 
@@ -91,6 +93,8 @@ def plots():
                                                                                                 color='rgb(255,255,255)'),
                       paper_bgcolor='lightcoral', plot_bgcolor='lightcoral', colorway=['rgb(255,255,255)'],
                       xaxis=dict(showgrid=False, color='rgb(255,255,255)'))
+
+    print(' ')
 
     rtype_lisbon = pd.DataFrame(listings_lisbon['room_type'].value_counts())
     rtype_lisbon.columns = ['room_count']
@@ -686,7 +690,7 @@ app.layout = html.Div([
 
 ])
 
-
+print(' ')
 @app.callback(Output('tabs-content-example', 'children'),
               [Input('tabs-example', 'value')])
 def render_content(tab):
@@ -699,7 +703,7 @@ def render_content(tab):
 
                 html.Div([
                     html.Img(
-                        src=app.get_asset_url('logo.png'),
+                        src=app.get_asset_url('logo.jpeg'),
                         id="aibnb_image",
                         style={"height": "60px", "width": "auto", "margin-bottom": "20px", "margin-top": "20px"}
                     ),
