@@ -14,14 +14,6 @@ listings_amsterdam = pd.read_csv('listings_amsterdam_clean.csv')
 listings_lisbon = pd.read_csv('listings_lisbon_clean.csv')
 listings_paris = pd.read_csv('listings_paris_clean.csv')
 
-superHost = ['Yes', 'No']
-roomType = ['Hotel Room', 'Shared Room', 'Private Room', 'Entire Home/Apartment']
-superHostCode = [1, 0]
-roomTypeCode = ['Hotel room', 'Shared room', 'Private room', 'Entire home/apt']
-
-superHost_options = [dict(label=sh, value=code) for sh, code in zip(superHost, superHostCode)]
-roomType_options = [dict(label=rt, value=code) for rt, code in zip(roomType, roomTypeCode)]
-
 
 def cheapest(city):
     if city == 'Lisbon':
@@ -676,21 +668,6 @@ app.layout = html.Div([
 ])
 
 
-#------------------------------------------------------------------------------------------------------
-#@app.callback(
-#    [
-#        Output("priceVariation", "figure"),
-#        Output("barChart", "figure"),
-#        Output("stackedBarChart", "figure"),
-#        Output("radar", "figure"),
-#        Output("map", "figure")
-#    ],
-#    [
-#        Input("superhost_drop", "value"),
-#        Input("roomtype_drop", "value")
-#    ]
-#)
-#------------------------------------------------------------------------------------------------------
 #callbacks tabs
 @app.callback(Output('tabs-content-example', 'children'),
               [Input('tabs-example', 'value')])
