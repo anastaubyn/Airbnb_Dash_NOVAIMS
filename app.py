@@ -70,6 +70,7 @@ def plots():
                        paper_bgcolor='lightcoral', plot_bgcolor='lightcoral',
                        colorway=['rgb(255,255,255)'])
 
+    print(' ')
 
     count_listings_lisbon = pd.DataFrame(listings_lisbon.groupby('neighbourhood').count())
     count_listings_lisbon = count_listings_lisbon.sort_values(by=['id'], ascending=False)
@@ -98,6 +99,8 @@ def plots():
     rtype_lisbon = rtype_lisbon.T
 
     fig_bar = go.Figure()
+
+    print(' ')
 
     fig_bar.add_trace(go.Bar(x=rtype_lisbon['Entire home/apt'],
                              y=['Rooms'],
@@ -144,6 +147,8 @@ def plots():
                           height=300,
                           plot_bgcolor='whitesmoke',margin=dict(t=100,b=0,r=0,l=0))
 
+    print(' ')
+
     scores_lisbon = round(listings_lisbon.mean()[['score_clean', 'score_communication', 'score_location']], 1)
     scores_lisbon = pd.DataFrame(scores_lisbon)
     scores_lisbon = scores_lisbon.T
@@ -178,6 +183,8 @@ def plots():
         hoverlabel=dict(bordercolor='white')
     )
     fig = go.Figure(data=data)
+
+    print(' ')
 
     x = fig.update_layout(
         title='Lisbon ',
@@ -236,7 +243,10 @@ def plots():
             style='light'
         ),
         margin=dict(t=0,b=0,r=0,l=0)
+
     )
+
+    print(' ')
 
     return go.Figure(data=line_data_lisbon, layout=line_layout), \
            go.Figure(data=data_bar_lisbon, layout=layout_bar), \
@@ -261,6 +271,8 @@ def plotsparis():
                        yaxis=dict(title='Price ($)', showgrid=False, color='rgb(255,255,255)'),
                        paper_bgcolor='lightcoral', plot_bgcolor='lightcoral',
                        colorway=['rgb(255,255,255)'])
+
+    print(' ')
 
 
     count_listings_paris = pd.DataFrame(listings_paris.groupby('neighbourhood').count())
@@ -290,6 +302,8 @@ def plotsparis():
     rtype_paris = rtype_paris.T
 
     fig_bar = go.Figure()
+
+    print(' ')
 
     fig_bar.add_trace(go.Bar(x=rtype_paris['Entire home/apt'],
                              y=['Rooms'],
@@ -340,6 +354,8 @@ def plotsparis():
     scores_paris = pd.DataFrame(scores_paris)
     scores_paris = scores_paris.T
 
+    print(' ')
+
     data_radar = [go.Scatterpolar(r=scores_paris.iloc[0],
                                   theta=['Clean', 'Communication', 'Location'],
                                   fill='toself',
@@ -353,6 +369,8 @@ def plotsparis():
                              showlegend=False,margin=dict(t=25,b=50,r=25,l=25))
 
     lis_local_exact = listings_paris[listings_paris['is_location_exact'] == 1]
+
+    print(' ')
 
     data = go.Scattermapbox(
         lat=lis_local_exact['latitude'],
@@ -393,6 +411,8 @@ def plotsparis():
 
     lis_local_exact = listings_paris[listings_paris['is_location_exact'] == 1]
 
+    print(' ')
+
     data = go.Scattermapbox(
         lat=lis_local_exact['latitude'],
         lon=lis_local_exact['longitude'],
@@ -430,6 +450,8 @@ def plotsparis():
         margin=dict(t=0,b=0,r=0,l=0)
     )
 
+    print(' ')
+
     return go.Figure(data=line_data_paris, layout=line_layout), \
            go.Figure(data=data_bar_paris, layout=layout_bar), \
            fig_bar, \
@@ -459,6 +481,8 @@ def plotams():
     count_listings_amsterdam.reset_index(inplace=True)
     count_listings_amsterdam = count_listings_amsterdam.iloc[0:15, 0:2]
 
+    print(' ')
+
     count_listings_amsterdam.columns=['neighbourhood', 'id']
     data_bar_amsterdam = dict(type='bar', x=count_listings_amsterdam['neighbourhood'], y=count_listings_amsterdam['id'])
 
@@ -476,6 +500,8 @@ def plotams():
     rtype_amsterdam = rtype_amsterdam.T
 
     fig_bar = go.Figure()
+
+    print(' ')
 
     fig_bar.add_trace(go.Bar(x=rtype_amsterdam['Entire home/apt'],
                              y=['Rooms'],
@@ -526,6 +552,8 @@ def plotams():
     scores_amsterdam = pd.DataFrame(scores_amsterdam)
     scores_amsterdam = scores_amsterdam.T
 
+    print(' ')
+
     data_radar = [go.Scatterpolar(r=scores_amsterdam.iloc[0],
                                   theta=['Clean', 'Communication', 'Location'],
                                   fill='toself',
@@ -556,6 +584,8 @@ def plotams():
         hoverlabel=dict(bordercolor='white')
     )
     fig = go.Figure(data=data)
+
+    print(' ')
 
     x = fig.update_layout(
         title='amsterdam ',
@@ -596,6 +626,8 @@ def plotams():
     )
     fig = go.Figure(data=data)
 
+    print(' ')
+
     x = fig.update_layout(
         title='amsterdam ',
         autosize=True,
@@ -616,6 +648,8 @@ def plotams():
         margin=dict(t=0,b=0,r=0,l=0)
     )
 
+    print(' ')
+
     return go.Figure(data=line_data_amsterdam, layout=line_layout), \
            go.Figure(data=data_bar_amsterdam, layout=layout_bar), \
            fig_bar, \
@@ -624,8 +658,11 @@ def plotams():
 
 
 figs = plots()
+print(' ')
 figs2 = plotsparis()
+print(' ')
 figs3 = plotams()
+print(' ')
 
 tab_selected_style = {
     'borderTop': '1px solid lightcoral',
