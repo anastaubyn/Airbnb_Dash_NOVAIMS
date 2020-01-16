@@ -755,7 +755,7 @@ def render_content(tab):
 
                 html.Div([
                     html.Img(
-                        src=app.get_asset_url('logo.png'),
+                        src=app.get_asset_url('logo.jpeg'),
                         id="aibnb_image",
                         style={"height": "60px", "width": "auto", "margin-bottom": "20px", "margin-top": "20px"}
                     ),
@@ -807,7 +807,7 @@ def render_content(tab):
 
                 html.Div([
                     html.Img(
-                        src=app.get_asset_url('logo.png'),
+                        src=app.get_asset_url('logo.jpeg'),
                         id="aibnb_image",
                         style={"height": "60px", "width": "auto", "margin-bottom": "20px", "margin-top": "20px"}
                     ),
