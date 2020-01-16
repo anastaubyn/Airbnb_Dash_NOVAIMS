@@ -148,8 +148,6 @@ def plots():
     scores_lisbon = pd.DataFrame(scores_lisbon)
     scores_lisbon = scores_lisbon.T
 
-    rating_lisbon = round(listings_lisbon.mean()['rating'], 1)
-
     data_radar = [go.Scatterpolar(r=scores_lisbon.iloc[0],
                                   theta=['Clean', 'Communication', 'Location'],
                                   fill='toself',
@@ -345,8 +343,6 @@ def plotsparis():
     scores_paris = pd.DataFrame(scores_paris)
     scores_paris = scores_paris.T
 
-    rating_paris = round(listings_paris.mean()['rating'], 1)
-
     data_radar = [go.Scatterpolar(r=scores_paris.iloc[0],
                                   theta=['Clean', 'Communication', 'Location'],
                                   fill='toself',
@@ -538,8 +534,6 @@ def plotams():
     scores_amsterdam = round(listings_amsterdam.mean()[['score_clean', 'score_communication', 'score_location']], 1)
     scores_amsterdam = pd.DataFrame(scores_amsterdam)
     scores_amsterdam = scores_amsterdam.T
-
-    rating_amsterdam = round(listings_amsterdam.mean()['rating'], 1)
 
     data_radar = [go.Scatterpolar(r=scores_amsterdam.iloc[0],
                                   theta=['Clean', 'Communication', 'Location'],
