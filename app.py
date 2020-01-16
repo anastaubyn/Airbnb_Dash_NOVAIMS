@@ -6,7 +6,6 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objs as go
 
-#-------------------- DATA -------------------------------
 
 calendar_lisbon = pd.read_csv('calendar_lisbon_clean.csv')
 calendar_paris = pd.read_csv('calendar_paris_clean.csv')
@@ -20,50 +19,50 @@ roomType = ['Hotel Room', 'Shared Room', 'Private Room', 'Entire Home/Apartment'
 superHostCode = [1, 0]
 roomTypeCode = ['Hotel room', 'Shared room', 'Private room', 'Entire home/apt']
 
-superHost_options = [dict(label=sh, value=shcode) for sh, shcode in zip(superHost, superHostCode)]
-roomType_options = [dict(label=rt, value=rtcode) for rt, rtcode in zip(roomType, roomTypeCode)]
+superHost_options = [dict(label=sh, value=code) for sh, code in zip(superHost, superHostCode)]
+roomType_options = [dict(label=rt, value=code) for rt, code in zip(roomType, roomTypeCode)]
 
-#---------------------------------------------------------
 
-def kpiCheapest(city):
+def cheapest(city):
     if city == 'Lisbon':
         kpi_lisbon = pd.DataFrame(listings_lisbon.groupby('neighbourhood')['price'].agg(np.mean))
         kpi_lisbon = kpi_lisbon.sort_values(by=['price'], ascending=True)
         kpi_lisbon.reset_index(inplace=True)
-        cheapest = kpi_lisbon.iloc[0,]['neighbourhood']
+        cheap = kpi_lisbon.iloc[0, ]['neighbourhood']
     elif city == 'Paris':
         kpi_paris = pd.DataFrame(listings_paris.groupby('neighbourhood')['price'].agg(np.mean))
         kpi_paris = kpi_paris.sort_values(by=['price'], ascending=True)
         kpi_paris.reset_index(inplace=True)
-        cheapest = kpi_paris.iloc[0,]['neighbourhood']
+        cheap = kpi_paris.iloc[0, ]['neighbourhood']
     elif city == 'Amsterdam':
         kpi_amsterdam = pd.DataFrame(listings_amsterdam.groupby('neighbourhood')['price'].agg(np.mean))
         kpi_amsterdam = kpi_amsterdam.sort_values(by=['price'], ascending=True)
         kpi_amsterdam.reset_index(inplace=True)
-        cheapest = kpi_amsterdam.iloc[0,]['neighbourhood']
-    return cheapest
+        cheap = kpi_amsterdam.iloc[0, ]['neighbourhood']
+    return cheap
 
-def kpiExpensive(city):
+
+def expensive(city):
     if city == 'Lisbon':
         kpi_lisbon = pd.DataFrame(listings_lisbon.groupby('neighbourhood')['price'].agg(np.mean))
         kpi_lisbon = kpi_lisbon.sort_values(by=['price'], ascending=True)
         kpi_lisbon.reset_index(inplace=True)
-        expensive = kpi_lisbon.iloc[-1,]['neighbourhood']
+        expense = kpi_lisbon.iloc[-1, ]['neighbourhood']
     elif city == 'Paris':
         kpi_paris = pd.DataFrame(listings_paris.groupby('neighbourhood')['price'].agg(np.mean))
         kpi_paris = kpi_paris.sort_values(by=['price'], ascending=True)
         kpi_paris.reset_index(inplace=True)
-        expensive = kpi_paris.iloc[-1,]['neighbourhood']
+        expense = kpi_paris.iloc[-1, ]['neighbourhood']
     elif city == 'Amsterdam':
         kpi_amsterdam = pd.DataFrame(listings_amsterdam.groupby('neighbourhood')['price'].agg(np.mean))
         kpi_amsterdam = kpi_amsterdam.sort_values(by=['price'], ascending=True)
         kpi_amsterdam.reset_index(inplace=True)
-        expensive = kpi_amsterdam.iloc[-1,]['neighbourhood']
-    return expensive
+        expense = kpi_amsterdam.iloc[-1, ]['neighbourhood']
+    return expense
 
-def plots(superhost, roomtype):
 
-    ############################################ Line Chart Lisbon ##########################################################
+def plots():
+
     avg_price_lisbon = pd.DataFrame(calendar_lisbon.groupby('month')['price'].agg(np.mean))
     avg_price_lisbon['month'] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     avg_price_lisbon['month_num'] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -79,7 +78,6 @@ def plots(superhost, roomtype):
                        paper_bgcolor='lightcoral', plot_bgcolor='lightcoral',
                        colorway=['rgb(255,255,255)'])
 
-    ############################################ Bar Chart Lisbon ##########################################################
 
     count_listings_lisbon = pd.DataFrame(listings_lisbon.groupby('neighbourhood').count())
     count_listings_lisbon = count_listings_lisbon.sort_values(by=['id'], ascending=False)
@@ -101,7 +99,6 @@ def plots(superhost, roomtype):
                       paper_bgcolor='lightcoral', plot_bgcolor='lightcoral', colorway=['rgb(255,255,255)'],
                       xaxis=dict(showgrid=False, color='rgb(255,255,255)'))
 
-    ############################################ Stacked Bar Chart Lisbon ########################################################
     rtype_lisbon = pd.DataFrame(listings_lisbon['room_type'].value_counts())
     rtype_lisbon.columns = ['room_count']
     rtype_lisbon['room_perc'] = round((rtype_lisbon['room_count'] / sum(rtype_lisbon['room_count'])) * 100, 1)
@@ -155,7 +152,6 @@ def plots(superhost, roomtype):
                           height=300,
                           plot_bgcolor='whitesmoke',margin=dict(t=100,b=0,r=0,l=0))
 
-    ############################################ Radar Lisbon ########################################################
     scores_lisbon = round(listings_lisbon.mean()[['score_clean', 'score_communication', 'score_location']], 1)
     scores_lisbon = pd.DataFrame(scores_lisbon)
     scores_lisbon = scores_lisbon.T
@@ -259,9 +255,10 @@ def plots(superhost, roomtype):
            fig_bar, \
            go.Figure(data=data_radar, layout=layout_radar), \
            fig
-def plotsParis(superhost, roomtype):
 
-    ############################################ Line Chart Paris ##########################################################
+
+def plotsparis():
+
     avg_price_paris = pd.DataFrame(calendar_paris.groupby('month')['price'].agg(np.mean))
     avg_price_paris['month'] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     avg_price_paris['month_num'] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -299,7 +296,6 @@ def plotsParis(superhost, roomtype):
                       paper_bgcolor='lightcoral', plot_bgcolor='lightcoral', colorway=['rgb(255,255,255)'],
                       xaxis=dict(showgrid=False, color='rgb(255,255,255)'))
 
-    ############################################ Stacked Bar Chart Paris ########################################################
     rtype_paris = pd.DataFrame(listings_paris['room_type'].value_counts())
     rtype_paris.columns = ['room_count']
     rtype_paris['room_perc'] = round((rtype_paris['room_count'] / sum(rtype_paris['room_count'])) * 100, 1)
@@ -353,7 +349,6 @@ def plotsParis(superhost, roomtype):
                           height=300,
                           plot_bgcolor='whitesmoke',margin=dict(t=100,b=0,r=0,l=0))
 
-    ############################################ Radar Paris ########################################################
     scores_paris = round(listings_paris.mean()[['score_clean', 'score_communication', 'score_location']], 1)
     scores_paris = pd.DataFrame(scores_paris)
     scores_paris = scores_paris.T
@@ -458,7 +453,7 @@ def plotsParis(superhost, roomtype):
            go.Figure(data=data_radar, layout=layout_radar), \
            fig
 
-def plotsAms(superhost, roomtype):
+def plotams():
 
     ############################################ Line Chart amsterdam ##########################################################
     avg_price_amsterdam = pd.DataFrame(calendar_amsterdam.groupby('month')['price'].agg(np.mean))
@@ -654,8 +649,8 @@ def plotsAms(superhost, roomtype):
 
 
 figs = plots('ds','sd')
-figs2 = plotsParis('ds', 'sd')
-figs3 = plotsAms('ds', 'sd')
+figs2 = plotsparis('ds', 'sd')
+figs3 = plotams('ds', 'sd')
 
 tab_selected_style = {
     'borderTop': '1px solid lightcoral',
