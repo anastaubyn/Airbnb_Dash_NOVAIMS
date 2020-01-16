@@ -11,7 +11,7 @@ calendar_lisbon = pd.read_csv('calendar_lisbon_clean.csv')
 calendar_paris = pd.read_csv('calendar_paris_clean.csv')
 calendar_amsterdam = pd.read_csv('calendar_amsterdam_clean.csv')
 listings_amsterdam = pd.read_csv('listings_amsterdam_clean.csv')
-listings_lisbon = pd.read_csv('listings_lisbon_clean.csv')
+listings_lisbon = pd.read_csv('listings_lisbon_cleansed.csv')
 listings_paris = pd.read_csv('listings_paris_clean.csv')
 
 
@@ -634,9 +634,9 @@ def plotams():
            fig
 
 
-figs = plots('ds','sd')
-figs2 = plotsparis('ds', 'sd')
-figs3 = plotams('ds', 'sd')
+figs = plots()
+figs2 = plotsparis()
+figs3 = plotams()
 
 tab_selected_style = {
     'borderTop': '1px solid lightcoral',
