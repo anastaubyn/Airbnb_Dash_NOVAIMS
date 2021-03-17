@@ -1,6 +1,6 @@
 # Airbnb_Dash_NOVAIMS
 
-![](http://www.theriver.asia/wp-content/uploads/2020/01/pngkey.com-airbnb-logo-png-605967.png)
+![](http://www.theriver.asia/wp-content/uploads/2020/01/pngkey.com-airbnb-logo-png-605967.png=30x30)
 
 ## An online dashboard created using Dash and deployed using Heroku
 
